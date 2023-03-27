@@ -1,5 +1,5 @@
 function nicknameMap(items) {
-  // ...
+  
   return [items.name, items.age].join("-");
 }
 
