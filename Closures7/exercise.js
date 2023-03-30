@@ -4,6 +4,7 @@ function printName(){
         setTimeout(() => {
             console.log(this.helloName);
         }, 1000)
+        
         return helloName;
     }
     return inner;
