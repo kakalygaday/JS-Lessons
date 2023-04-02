@@ -17,7 +17,8 @@ console.log('After swap: ', num1, num2); // After swap: 20 10
 //--------Another way------------
 const twoNumbers = [10, 20];
 let [firstNumber, secondNumber] = twoNumbers;
-const temp = firstNumber;
-firstNumber = secondNumber;
-secondNumber = temp;
+[firstNumber, secondNumber] = [secondNumber, firstNumber];
+// const temp = firstNumber;
+// firstNumber = secondNumber;
+// secondNumber = temp;
 console.log('After swap: ', firstNumber, secondNumber); // After swap: 20 10
