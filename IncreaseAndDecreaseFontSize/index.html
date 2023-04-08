@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #area {
+            width: 400px;
+            height: 400px;
+            background-color: blueviolet;
+            color: #fff;
+            margin-top: 200px;
+            /* font-size: 16px; */
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="color" id="color-picker" onchange="colorizeArea()">
+    <button onclick="colorizeArea()">Click here</button>
+    <button onclick="increaseFontSize()">Increase Font Size</button>
+    <button onclick="decreaseFontSize()">Decrease Font Size</button>
+    <div id="area">
+        area
+    </div>
+    <script>
+        function colorizeArea() {
+            var colorCh = document.getElementById('color-picker');
+            console.log(colorCh);
+            theArea.style.backgroundColor = colorCh.value;
+
+        }
+        function increaseFontSize() {
+            var currentFontSize = theArea.style.fontSize
+            if(currentFontSize) {
+                currentFontSize = parseInt(currentFontSize)
+                if (currentFontSize < 40) {
+                    currentFontSize = currentFontSize + 2
+                }
+                
+                console.log(currentFontSize)
+            }else{
+                currentFontSize = 18
+            }
+            
+            theArea.style.fontSize = currentFontSize + 'px'
+        }
+
+        var theArea = document.getElementById('area')
+        theArea.innerHTML = "Changed soemthing after clicking";
+        theArea.style.width = "200px"
+        theArea.style.height = "100px"
+
+        function decreaseFontSize() {
+            var currentFontSize = theArea.style.fontSize
+            if(currentFontSize){
+                currentFontSize = parseInt(currentFontSize)
+                if(currentFontSize > 10){
+                    currentFontSize = currentFontSize - 2
+                }
+                console.log(currentFontSize)
+            }else{
+                currentFontSize = 18
+            }
+            theArea.style.fontSize = currentFontSize + 'px'
+        }
+
+    </script>
+</body>
+
+</html>
