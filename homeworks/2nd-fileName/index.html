@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="initial-name">
+    <button id="get-name-btn" onclick="getName()">Get Name</button>
+
+    <script>
+        var usedNames = [];
+        function getName() {
+            var name = document.getElementById("initial-name").value;
+            var splittedName = name.split('.');
+            let splittedNameWithoutLastExtention = splittedName.slice(0, -1);
+            // let nameWithoutLastExtention = ""; 
+            var newName = name;
+            var counter = 1;
+            while (usedNames.includes(newName)) {
+                let nameWithoutLastExtention = "";
+                for (let i = splittedNameWithoutLastExtention.length - 1; i >= 0; i--) {
+                    dotAdd = splittedNameWithoutLastExtention[i];
+
+                    if (i !== splittedNameWithoutLastExtention.length - 1) {
+                        dotAdd += ".";  // add a dot after each part of the name except the last one 
+                    }
+                    nameWithoutLastExtention = dotAdd + nameWithoutLastExtention; // add the part of the name to the new string 
+                }
+                newName = nameWithoutLastExtention + "-" + counter + "." + splittedName[splittedName.length - 1]; // create the new file name with the counter and last extenstion 
+                console.log(newName); // log it to check it's working correctly 
+                counter++; // increment the counter for next iteration 
+            }
+            usedNames.push(newName); // push it to used names array 
+            console.log(usedNames); // log it to check it's working correctly  
+        }
+
+        // var usedNames = [];
+        // function getName() {
+        //     var name = document.getElementById("initial-name").value;
+        //     var splittedName = name.split('.');
+        //     let splittedNameWithoutLastExtention = splittedName.slice(0, -1);
+        //     let nameWithoutLastExtention = "";
+        //     var newName = name;
+        //     var counter = 1;
+
+        //     while (usedNames.includes(newName)) {
+        //         for (let i = splittedNameWithoutLastExtention.length - 1; i >= 0; i--) {
+        //             if (splittedNameWithoutLastExtention[i] === ".") {
+        //                 break;
+        //             } else {
+        //                let dotAdd = splittedNameWithoutLastExtention[i];
+
+        //                 if (i !== splittedNameWithoutLastExtention.length - 1) {
+        //                     dotAdd += ".";  // add a dot after each part of the name except the last one
+        //                 }
+
+        //                 nameWithoutLastExtention = dotAdd + nameWithoutLastExtention; // add the part of the name to the new string
+
+        //             }
+
+        //             newName = nameWithoutLastExtention + "-" + counter + "." + splittedName[splittedName.length - 1]; // create the new file name with the counter and last extenstion
+
+        //             console.log(newName); // log it to check it's working correctly
+
+        //             counter++; // increment the counter for next iteration
+
+        //         }
+
+        //         usedNames.push(newName); // push it to used names array
+
+        //         console.log(usedNames); // log it to check it's working correctly
+
+        //     }
+        // }
+    </script>
+
+    <!-- <script src="#">
+        var usedNames = []
+        function getName() {
+            var name  = document.getElementById("initial-name").value
+            var splittedName = name.split('.')
+            let splittedNameWithoutLastExtention = splittedName.slice(0, -1)
+            let nameWithoutLastExtention = ""
+            var newName = name
+            var counter = 1
+            while (usedNames.includes(newName)) {
+                for(let i=splittedNameWithoutLastExtention.length-1; i>=0; i--){
+                    if(splittedNameWithoutLastExtention[i] === "."){
+                        break;
+                }else{
+                    dotAdd = splittedNameWithoutLastExtention[i];
+                    if (i !== splittedNameWithoutLastExtention.length-1) {
+                        dotAdd += ".";
+                    }
+                    nameWithoutLastExtention = dotAdd + nameWithoutLastExtention;
+                }
+                newName = nameWithoutLastExtention + "-" + counter + "." + splittedName[-1];
+                // newName = splittedName[0] + '-' + counter + '.' + splittedName[1]
+                console.log(newName);
+                counter++
+                // console.log(newName);
+            }
+            usedNames.push(newName)
+            console.log(usedNames);
+        } -->
+    <!-- </script> -->
+</body>
+
+</html>
