@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .slider-wrapper {
+            overflow: hidden;
+            /* position: relative; */
+            width: 100%;
+        }
+
+        #slider {
+            background-color: pink;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            transition: 0.3s linear all;
+            /* overflow: hidden; */
+        }
+
+        .navigate-btn {
+            top: 50%;
+            position: absolute;
+        }
+
+        .next-btn {
+            right: 0;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #slide1 {
+            background-color: brown;
+            /* margin-left: 100px; */
+        }
+
+        #slide2 {
+            background-color: blue;
+        }
+
+        #slide3 {
+            background-color: darkgoldenrod;
+        }
+
+        #slide4 {
+            background-color: darkgreen;
+        }
+
+        #slide5 {
+            background-color: darkmagenta;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-wrapper">
+        <div id="slider">
+            <div class="slide" id="slide1">Slide1</div>
+            <div class="slide" id="slide2">Slide2</div>
+            <div class="slide" id="slide3">Slide3</div>
+            <div class="slide" id="slide4">Slide4</div>
+            <div class="slide" id="slide5">Slide5</div>
+        </div>
+    </div>
+    <button class="navigate-btn" onclick="goPrevSlide()">Prev</button>
+    <button class="navigate-btn next-btn" onclick="goNextSlide()">Next</button>
+
+    <script>
+        var currentSlide = 0
+        var slides = document.getElementsByClassName('slide')
+        //With a infinite slider mine-------------------
+        function goNextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide = currentSlide + 1
+                var slider = document.getElementById('slider');
+                var windowWidth = window.innerWidth // 1280
+                // alert(windowWidth);
+                slider.style.transform = "translateX(-" + (currentSlide * windowWidth) + "px)"
+            } else {
+                currentSlide = 0;  // reset the slide to 0
+                var slider = document.getElementById('slider');  // get the slider element
+                var windowWidth = window.innerWidth; // get the width of the window
+
+                // set the transform property of the slider to translateX(0px)
+                slider.style.transform = "translateX(" + (currentSlide * windowWidth) + "px)"
+            }
+        }
+
+        function goPrevSlide() {
+            if (currentSlide > 0) {
+                currentSlide = currentSlide - 1
+                var slider = document.getElementById('slider');
+                var windowWidth = window.innerWidth // 1280
+                slider.style.transform = "translateX(-" + (currentSlide * windowWidth) + "px)"
+            } else {
+                currentSlide = slides.length - 1;   // set the slide to last slide
+                var slider = document.getElementById('slider');   // get the slider element
+                var windowWidth = window.innerWidth;    // get the width of the window
+                // set the transform property of the slider to translateX(-width*last slide index) px
+
+                slider.style.transform = "translateX(-" + (currentSlide * windowWidth) + "px)"
+            }
+        }
+
+        // way of tutor----------------------------------------
+        // var windowWidth = window.innerWidth //1280
+        // // console.log(slides.length-1)
+        // function goNextSlide() {
+        //     if (currentSlide < slides.length - 1) {
+        //         currentSlide = currentSlide + 1
+        //     } else {
+        //         currentSlide = 0 //this make work wrapping(infinite)
+        //     }
+        //     slider.style.transform = "translateX(-" + (currentSlide * windowWidth) + "px)"
+        // }
+
+        // function goPrevSlide() {
+        //     if (currentSlide > 0) {
+        //         currentSlide = currentSlide - 1
+        //     } else {
+        //         currentSlide = slides.length - 1 //and this
+        //     }
+        //     slider.style.transform = "translateX(-" + (currentSlide * windowWidth) + "px)"
+        // }
+
+
+    </script>
+</body>
+
+</html>
