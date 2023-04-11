@@ -5,18 +5,21 @@ form.addEventListener('submit', function () {
     var surname = document.getElementById('surname').value;
     var email = document.getElementById('email').value;
     var number = document.getElementById('number').value;
-    formValidation(name, surname, email, number);
+    // formValidation(name, surname, email, number);
 
+    formValidation(name, surname, email, number).then(function (result) {
+        if (result) {
+            addAttendee(name, surname, email, number);
+            alert("Form is valid!") 
+        } else {
+            alert("Form is invalid, try again!");
+        }
+    }).catch(function (error) {
+        console.log(error);  
+    }); 
 })
-formValidation(name, surname, email, number).then(function (result) {
-    if (result) {
-        alert("Form is valid!") 
-    } else {
-        alert("Form is invalid, try again!");
-    }
-}).catch(function (error) {
-    console.log(error);  
-}); 
+
+
 
 function formValidation(name, surname, email, number) {
     if (name.length > 0 && surname.length > 0 && email.length > 0 && number > 13) {
@@ -26,17 +29,18 @@ function formValidation(name, surname, email, number) {
     }
 }
 function addAttendee(name, surname, email, number) {
-    var attendee = document.getElementById('attendee')
-    attendee.innerHTML =
+    var attendees = document.getElementById('attendee')
+    attendees.innerHTML += 
      `<li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-            <div class="fw-bold">${attendee.name}, ${attendee.surnamename}, ${attendee.number}
+            <div class="fw-bold">${name}, ${surnamename}, ${number}
             </div>
-            ${attendee.email}
+            ${email}
         </div>
    <span class="badge bg-primary rounded-pill">M</span>
-     </li>`
+     </li>`; 
 }
+
 function addAttendee(name, surname, email, number) {
     return new Promise(function (resolve, reject) {
         if (formValidation(name, surname, email, number)) {
