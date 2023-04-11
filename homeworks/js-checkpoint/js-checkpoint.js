@@ -19,8 +19,6 @@ form.addEventListener('submit', function () {
     }); 
 })
 
-
-
 function formValidation(name, surname, email, number) {
     if (name.length > 0 && surname.length > 0 && email.length > 0 && number > 13) {
         return true;
@@ -28,9 +26,10 @@ function formValidation(name, surname, email, number) {
         return false;
     }
 }
+
 function addAttendee(name, surname, email, number) {
     var attendees = document.getElementById('attendee')
-    attendees.innerHTML += 
+    attendees.innerHTML = 
      `<li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
             <div class="fw-bold">${name}, ${surnamename}, ${number}
