@@ -1,51 +1,62 @@
-// use addEventListener to handle form submit event
-const form = document.querySelector('form')
-form.addEventListener('submit', function () {
-    var name = document.getElementById('name').value;
-    var surname = document.getElementById('surname').value;
-    var email = document.getElementById('email').value;
-    var number = document.getElementById('number').value;
-    // formValidation(name, surname, email, number);
+const form = document.querySelector('form');
+form.addEventListener('submit', formValidation);
 
-    formValidation(name, surname, email, number).then(function (result) {
-        if (result) {
-            addAttendee(name, surname, email, number);
-            alert("Form is valid!") 
-        } else {
-            alert("Form is invalid, try again!");
-        }
-    }).catch(function (error) {
-        console.log(error);  
-    }); 
-})
+function formValidation(e) {
+    e.preventDefault();
 
-function formValidation(name, surname, email, number) {
-    if (name.length > 0 && surname.length > 0 && email.length > 0 && number > 13) {
-        return true;
+    const name = document.getElementById('name').value;
+    const surname = document.getElementById('surname').value;
+    const email = document.getElementById('email').value;
+    const number = document.getElementById('number').value;
+
+    if (name.length === 0 || surname.length === 0 || email.length === 0 || number <= 13) {
+        alert('Please fill the empty line!');
     } else {
-        return false;
+        addAttendee(name, surname, email, number)
+            .then(result => {
+                if (result === 'Attendee added!') {
+                    form.submit();
+                } else {
+                    alert(result.message || 'Attendee is not added!')
+                }
+            }).catch
     }
 }
 
 function addAttendee(name, surname, email, number) {
-    var attendees = document.getElementById('attendee')
-    attendees.innerHTML = 
-     `<li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-            <div class="fw-bold">${name}, ${surnamename}, ${number}
-            </div>
-            ${email}
-        </div>
-   <span class="badge bg-primary rounded-pill">M</span>
-     </li>`; 
+    return new Promise(function ({ resolve, reject }) {
+        if (name.length === 0 || surname.length === 0 || email.length === 0 || number <= 13) {
+            reject('Please fill the empty line!');
+        } else {
+            const attendees = document.getElementById("attendees");
+            attendees.innerHTML +=
+                `<li class='list-group-item'>
+                        <div class='ms-2 me-auto'> <div class='fw-bold'>${name} ${surname} ${number}</div> ${email}</div>
+                        <span class='badge bg-primary rounded-pill'>M</span></div>
+                    </li>`;
+            resolve('Attendee added!')
+        }
+    })
 }
 
-function addAttendee(name, surname, email, number) {
-    return new Promise(function (resolve, reject) {
-        if (formValidation(name, surname, email, number)) {
-            resolve('Attendee added!'); 
-        } else { 
-            reject('error found!'); 
-        } 
-    }); 
-}
+        // function formValidation(event) {
+        //     event.preventDefault();
+
+        //     const name = document.getElementById('name').value;
+        //     const surname = document.getElementById('surname').value;
+        //     const email = document.getElementById('email').value;
+        //     const number = document.getElementById('number').value;
+
+        //     if (name.length === 0 || surname.length === 0 || email.length === 0 || number <= 13) {
+        //         alert('Please fill out all required fields.');
+        //     } else {
+        //         addAttendee(name, surname, email, number)
+        //             .then(result => {
+        //                 if (result === '---------') {
+        //                     form.submit();
+        //                 } else {
+        //                     alert(result.message || '--------')
+        //                 }
+        //             }).catch
+        //     }
+        // }
