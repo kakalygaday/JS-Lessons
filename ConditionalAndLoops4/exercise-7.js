@@ -5,5 +5,5 @@ function sumUntil(maxValue) {
   }
   return sum;
 }
-console.log(sumUntil(5));
+console.log(sumUntil(5)); // 15
 
