@@ -1,0 +1,30 @@
+<html>
+  <body>
+    <div id="container">
+      <form>
+        <div>
+          <label>First Name:</label>
+          <input type="text" class="form-input" id="firstName" value="Mario"/>
+        </div>
+        <div>
+          <label>Last Name:</label>
+          <input type="text" class="form-input" id="lastName" value="Rossi"/>
+        </div>
+        <div>
+          <label>Age:</label>
+          <input type="number" class="form-input" id="age" value="25"/>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  const valuesOfInput = document.querySelectorAll('.form-input');
+  const valuesOfLabel = document.querySelectorAll('.form-label');
+  for(let i=0; i<valuesOfInput.length; i++){
+    const valuesOfLabel = valuesOfInput[i].previousElementSibling.innerText;
+    const value = valuesOfInput[i].value;
+    console.log(`${valuesOfLabel} ${value}`);
+  }
+</script>
